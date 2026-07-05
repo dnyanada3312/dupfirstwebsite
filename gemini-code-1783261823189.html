@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Sports Academy | Train Like a Pro</title>
+    <style>
+        /* --- GLOBAL STYLES & RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #222;
+            line-height: 1.7;
+        }
+
+        /* --- NAVIGATION BAR --- */
+        header {
+            background-color: #111827; /* Dark charcoal */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            color: #ffffff;
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: #ff4757; /* Electric Red accent */
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #e5e7eb;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff4757;
+        }
+
+        /* --- HOME / HERO SECTION --- */
+        #home {
+            background: linear-gradient(rgba(17, 24, 39, 0.75), rgba(17, 24, 39, 0.75)), 
+                        url('https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1.5rem;
+        }
+
+        #home h1 {
+            font-size: 3.8rem;
+            color: #ffffff;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        #home p {
+            font-size: 1.3rem;
+            color: #d1d5db;
+            max-width: 700px;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #ff4757;
+            color: #ffffff;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 14px rgba(255, 71, 87, 0.4);
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e84118;
+            transform: translateY(-2px);
+        }
+
+        /* --- SECTION STRUCTURE --- */
+        section {
+            padding: 6.5rem 2rem 4rem 2rem; /* Strategic top padding accounts for the sticky navbar */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3.5rem;
+            text-transform: uppercase;
+            color: #111827;
+            letter-spacing: 1px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 5px;
+            background-color: #ff4757;
+            margin: 12px auto 0 auto;
+            border-radius: 3px;
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.15rem;
+            color: #4b5563;
+        }
+
+        .about-img {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+        }
+
+        /* --- CLASSES SECTION --- */
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .class-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .class-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+
+        .class-img {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .class-info {
+            padding: 2rem;
+        }
+
+        .class-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+            color: #111827;
+            font-weight: 700;
+        }
+
+        .class-info p {
+            color: #6b7280;
+            font-size: 1rem;
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact-card {
+            max-width: 650px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.75rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.95rem;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 1rem;
+            background-color: #f9fafb;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #ff4757;
+            background-color: #ffffff;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 140px;
+        }
+
+        .submit-btn {
+            background-color: #111827;
+            color: #ffffff;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #1f2937;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #111827;
+            color: #9ca3af;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            margin-top: 5rem;
+            font-size: 0.95rem;
+            border-top: 1px solid #1f2937;
+        }
+
+        /* Responsive Breakpoint for Mobile Devices */
+        @media (max-width: 768px) {
+            #home h1 { font-size: 2.5rem; }
+            .navbar { flex-direction: column; gap: 1rem; text-align: center; }
+            .nav-links { gap: 1.25rem; }
+            .about-container { gap: 2rem; }
+            .contact-card { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Apex<span>Sports</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#classes">Classes</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h1>Elevate Your Game</h1>
+        <p>Unlock elite-level athletic performance with state-of-the-art training facilities and coaching designed to build champion mindsets.</p>
+        <a href="#classes" class="btn">Explore Programs</a>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About Our Academy</h2>
+        <div class="about-container">
+            <div class="about-text">
+                <p>Welcome to Apex Sports Academy, a premium destination for professional sports development. Founded with a vision to systematically train global competitors, we bridge the gap between passion and world-class technique.</p>
+                <p>We pride ourselves on offering disciplined environments across all age groups. From recreational sports foundations to high-intensity tactical programs, our certified professionals pave the route for your success.</p>
+            </div>
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&w=600&q=80" alt="Athletes running drills at the academy infrastructure">
+            </div>
+        </div>
+    </section>
+
+    <section id="classes">
+        <h2 class="section-title">Training Classes</h2>
+        <div class="classes-grid">
+            
+            <div class="class-card">
+                <div class="class-img" style="background-image: url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="class-info">
+                    <h3>Football Excellence</h3>
+                    <p>Develop tactical awareness, technical precision, and team synergy under national-tier trainers.</p>
+                </div>
+            </div>
+
+            <div class="class-card">
+                <div class="class-img" style="background-image: url('https://images.unsplash.com/photo-1544698310-74ea9d1c8258?auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="class-info">
+                    <h3>Basketball Blueprint</h3>
+                    <p>Sharpen foundational handling skills, high-intensity shooting routines, and positional layout play.</p>
+                </div>
+            </div>
+
+            <div class="class-card">
+                <div class="class-img" style="background-image: url('https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="class-info">
+                    <h3>Elite Tennis Program</h3>
+                    <p>Perfect baseline execution, complex volleys, and explosive footwork mechanics across premium hardcourts.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="contact-card">
+            <form action="#" method="POST" onsubmit="alert('Thank you for reaching out! Our admissions desk will call you shortly.'); return false;">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="john@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="message">Program of Interest & Details</label>
+                    <textarea id="message" required placeholder="Let us know which sport or class schedule you're inquiring about..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Apex Sports Academy. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
